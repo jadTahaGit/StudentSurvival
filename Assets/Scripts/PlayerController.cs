@@ -7,10 +7,15 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private bool enableKeyboardControl;
     private Rigidbody2D rb2d;
+    [SerializeField]
+    private int maxHealth;
+
+    public HealthBarController healthBar;
 
     void Start()
     {
         rb2d = GetComponent<Rigidbody2D>();
+        healthBar.SetMaxHealth(maxHealth);
     }
 
     void FixedUpdate()
