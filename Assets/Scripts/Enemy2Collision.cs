@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Enemy1Collision : MonoBehaviour
+public class Enemy2Collision : MonoBehaviour
 {
     public GameObject exp1;
     public GameObject exp2;
