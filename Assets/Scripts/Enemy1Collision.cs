@@ -14,6 +14,7 @@ public class Enemy1Collision : MonoBehaviour
         }
         else{
             if(other.tag == "Weapon"){
+                ScoreManager.instance.AddPoint();
                 SpawnExp();
                 Destroy(this.gameObject);
 
