@@ -9,12 +9,14 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2D rb2d;
     [SerializeField]
     private int maxHealth;
+    private int currentHealth;
 
     public HealthBarController healthBar;
 
     void Start()
     {
         rb2d = GetComponent<Rigidbody2D>();
+        currentHealth = maxHealth;
         healthBar.SetMaxHealth(maxHealth);
     }
 
@@ -32,5 +34,10 @@ public class PlayerController : MonoBehaviour
             Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             rb2d.MovePosition(mousePosition);
         }
+    }
+
+    public void TakeDamage(int damage){
+        currentHealth -= damage;
+        healthBar.SetHealth(currentHealth);
     }
 }

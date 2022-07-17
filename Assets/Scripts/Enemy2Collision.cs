@@ -11,6 +11,7 @@ public class Enemy2Collision : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other){
         if(other.gameObject.name == "Player"){
             // player should take damage here
+            other.GetComponent<PlayerController>().TakeDamage(10);
         }
         else{
             if(other.tag == "Weapon"){
