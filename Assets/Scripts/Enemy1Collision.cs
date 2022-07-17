@@ -7,11 +7,12 @@ public class Enemy1Collision : MonoBehaviour
     public GameObject exp1;
     public GameObject exp2;
     public GameObject exp3;
+    public int damage;
 
     private void OnTriggerEnter2D(Collider2D other){
         if(other.gameObject.name == "Player"){
             // player should take damage here
-            other.GetComponent<PlayerController>().TakeDamage(10);
+            other.GetComponent<PlayerController>().TakeDamage(damage);
         }
         else{
             if(other.tag == "Weapon"){

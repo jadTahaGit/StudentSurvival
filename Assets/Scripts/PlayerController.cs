@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
@@ -37,7 +38,21 @@ public class PlayerController : MonoBehaviour
     }
 
     public void TakeDamage(int damage){
+        
+        
         currentHealth -= damage;
-        healthBar.SetHealth(currentHealth);
+        if(currentHealth <= 0)
+        {
+            currentHealth = 0;
+            Debug.Log("Ded");
+            PlayerPrefs.SetInt("score", ScoreManager.instance.score);
+            SceneManager.LoadScene("GameOver");
+        }else{
+
+            healthBar.SetHealth(currentHealth); 
+        }
+        
+        
+       
     }
 }

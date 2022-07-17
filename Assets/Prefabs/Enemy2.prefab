@@ -154,3 +154,4 @@ MonoBehaviour:
   exp1: {fileID: 6742644896669723624, guid: 920dcb51fa1cb614eb8806001248b049, type: 3}
   exp2: {fileID: 8865617965501352313, guid: e3d860c3264557242a43c976af13ad03, type: 3}
   exp3: {fileID: 6412232636526773903, guid: 880d362ba41cfda46a68894bc3bb1495, type: 3}
+  damage: 100
