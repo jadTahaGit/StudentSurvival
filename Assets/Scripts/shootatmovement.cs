@@ -31,6 +31,7 @@ public class shootatmovement : MonoBehaviour
             Rigidbody2D pencilclone = Instantiate(Pencil, Playertransform.position, Playertransform.rotation);
             /*Set the projectile moving.*/
             pencilclone.velocity= rb2d.velocity*3;
+           
 
         } 
     }

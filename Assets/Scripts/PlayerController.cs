@@ -11,7 +11,6 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private int maxHealth;
     private int currentHealth;
-
     public HealthBarController healthBar;
 
     void Start()
@@ -19,6 +18,7 @@ public class PlayerController : MonoBehaviour
         rb2d = GetComponent<Rigidbody2D>();
         currentHealth = maxHealth;
         healthBar.SetMaxHealth(maxHealth);
+        
     }
 
     void FixedUpdate()
@@ -28,15 +28,15 @@ public class PlayerController : MonoBehaviour
             float moveHorizontal = Input.GetAxis("Horizontal");
             float moveVertical = Input.GetAxis("Vertical");
             Vector2 movement = new Vector2(moveHorizontal, moveVertical);
-            rb2d.velocity=(movement * speed);
+            rb2d.velocity = (movement * speed);
         }
         else
         {
             Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             rb2d.MovePosition(mousePosition);
         }
+       
     }
-
     public void TakeDamage(int damage){
         
         

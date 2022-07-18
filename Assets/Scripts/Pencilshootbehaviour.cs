@@ -21,6 +21,12 @@ public class Pencilshootbehaviour : MonoBehaviour
     void Start()
     {
         rb2d.AddForce(rb2d.transform.forward * speed);
-        Destroy(gameObject, duration);
+        
+        if(rb2d.velocity.magnitude<3)
+        {
+           
+            rb2d.velocity = Vector2.right * 3;
+        }
+                Destroy(gameObject, duration);
     }
 }
