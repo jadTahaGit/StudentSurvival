@@ -4,6 +4,13 @@ using UnityEngine.SceneManagement;
 public class PlayerController : MonoBehaviour
 {
     [SerializeField]
+
+    public float movePower = 10f; //By Jad
+
+    private float direction = 0.3f;//By Jad
+
+    private Animator anim; //By Jad
+
     private float speed;
     public int lvl;
     public int exp;
@@ -25,6 +32,8 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         rb2d = GetComponent<Rigidbody2D>();
+        anim = transform.GetChild(0).GetComponent<Animator>(); //by Jad
+
         currentHealth = maxHealth;
         healthBar.SetMaxHealth(maxHealth);
         lvluplights = GetComponent<ParticleSystem>();
@@ -47,8 +56,47 @@ public class PlayerController : MonoBehaviour
         {
             float moveHorizontal = Input.GetAxis("Horizontal");
             float moveVertical = Input.GetAxis("Vertical");
-            Vector2 movement = new Vector2(moveHorizontal, moveVertical);
-            rb2d.velocity = (movement * speed);
+            // Vector2 movement = new Vector2(moveHorizontal, moveVertical);
+            // rb2d.velocity = (movement * speed);
+            // added by Jad
+            Vector3 moveVelocity = Vector3.zero;
+                anim.SetBool("isRun", false);
+
+                if (Input.GetAxisRaw("Horizontal") < 0)
+                {
+                    direction = -0.3f;
+                    moveVelocity = Vector3.left;
+
+
+                    transform.GetChild(0).localScale = new Vector3(direction, 0.3f, 0.3f);
+                    if (!anim.GetBool("isJump")) {
+                        anim.SetBool("isRun", true);
+                        if(anim.GetBool("isRun")) {
+                                     Debug.Log("isRun");
+
+                        }
+                    }
+
+                }
+                if (Input.GetAxisRaw("Horizontal") > 0)
+                {
+                    direction = 0.3f;
+                    moveVelocity = Vector3.right;
+
+                    transform.GetChild(0).localScale = new Vector3(direction, 0.3f, 0.3f);
+                    if (!anim.GetBool("isJump"))
+                        anim.SetBool("isRun", true);
+
+                }
+                
+                if(Input.GetAxisRaw("Vertical") > 0){
+                      moveVelocity = Vector3.up;
+                }
+                if(Input.GetAxisRaw("Vertical") < 0){
+                      moveVelocity = Vector3.down;
+                }
+
+                transform.position += moveVelocity * movePower * Time.deltaTime;
         }
         else
         {
@@ -58,6 +106,8 @@ public class PlayerController : MonoBehaviour
         
        
     }
+
+
     public void TakeDamage(int damage){
         
         
