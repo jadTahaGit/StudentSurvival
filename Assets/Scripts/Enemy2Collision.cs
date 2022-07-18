@@ -8,19 +8,26 @@ public class Enemy2Collision : MonoBehaviour
     public GameObject exp2;
     public GameObject exp3;
     public int damage;
-
-    private void OnTriggerEnter2D(Collider2D other){
+    public Enemy2Controller controller;
+            private void OnTriggerEnter2D(Collider2D other){
         if(other.gameObject.name == "Player"){
             // player should take damage here
             other.GetComponent<PlayerController>().TakeDamage(damage);
         }
         else{
-            if(other.tag == "Weapon"){
-                SpawnExp();
-                ScoreManager.instance.AddPoint();
-                Destroy(this.gameObject);
-
-            
+             if (other.tag == "Weapon")
+                {
+                Debug.Log(controller.health.ToString());
+                controller.health -= other.gameObject.GetComponent<Pencilshootbehaviour>().damage;
+                Debug.Log(controller.health.ToString());
+                Destroy(other.gameObject);
+                    if (controller.health <= 0)
+                    {
+                    SpawnExp();
+                    ScoreManager.instance.AddPoint();
+                    Destroy(this.gameObject);
+               }
+                                
             }
         }
         

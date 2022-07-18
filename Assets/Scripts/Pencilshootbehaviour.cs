@@ -6,6 +6,7 @@ public class Pencilshootbehaviour : MonoBehaviour
 {
     public float speed = 10f;
     public float duration = 3f;
+    public float damage = 10;
     private Rigidbody2D rb2d;
    
     // Start is called before the first frame update

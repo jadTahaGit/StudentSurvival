@@ -7,6 +7,7 @@ public class Enemy2Controller : MonoBehaviour
     [SerializeField]
     private float speed = 1.3f;
     private Rigidbody2D rb2d;
+    public float health = 15;
     [SerializeField]
     Vector2 target;
     GameObject player;
