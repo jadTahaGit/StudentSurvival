@@ -20,6 +20,10 @@ public class Enemy1Controller : MonoBehaviour
         GameObject timer = GameObject.FindWithTag("Timer");
         int phase = timer.GetComponent<Timer>().phase;
         health = 10 + 5 * phase;
+        if (phase == 3)
+        {
+            speed = speed * 1.25f;
+        }
     }
 
     // Update is called once per frame
