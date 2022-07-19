@@ -35,6 +35,7 @@ public class PlayerController : MonoBehaviour
             Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             rb2d.MovePosition(mousePosition);
         }
+        Debug.Log(Time.deltaTime);
        
     }
     public void TakeDamage(int damage){
