@@ -5,6 +5,8 @@ public class PlayerController : MonoBehaviour
 {
     [SerializeField]
     private float speed;
+    public int lvl;
+    public int exp;
     [SerializeField]
     private bool enableKeyboardControl;
     private Rigidbody2D rb2d;
@@ -12,12 +14,18 @@ public class PlayerController : MonoBehaviour
     private int maxHealth;
     private int currentHealth;
     public HealthBarController healthBar;
-
+    private ParticleSystem lvluplights;
+    private AudioSource lvlupsound;
     void Start()
     {
         rb2d = GetComponent<Rigidbody2D>();
         currentHealth = maxHealth;
         healthBar.SetMaxHealth(maxHealth);
+        lvluplights = GetComponent<ParticleSystem>();
+        lvluplights.Stop();
+        lvlupsound = GetComponent<AudioSource>();
+        lvl = 1;
+        exp = 0;
         
     }
 
@@ -56,4 +64,25 @@ public class PlayerController : MonoBehaviour
         
        
     }
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        
+            if (other.tag == "EXP")
+            {
+            
+            exp += 1;
+              
+            Destroy(other.gameObject);
+                if (exp >= 30)
+                {
+                lvlupsound.Play();
+                lvluplights.Play();
+                lvl += 1;
+                exp = 0;
+                }
+
+            }
+        }
+
+    
 }
