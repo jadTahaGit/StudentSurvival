@@ -7,7 +7,7 @@ public class Enemy1SpawnerController : MonoBehaviour
     [SerializeField]
     private GameObject enemyPrefab;
     [SerializeField]
-    private float spawnRate = 5.0f;
+    public float spawnRate = 2.5f;
     
     // Start is called before the first frame update
     void Start()

@@ -5,6 +5,10 @@ using TMPro;
 
 public class Timer : MonoBehaviour
 {
+	[SerializeField]
+	private Enemy1SpawnerController controller1;
+	public Enemy2SpawnerController controller2;
+	[SerializeField]
 	private float time;
 	public TextMeshProUGUI TimerText;
 	private Color guicolor;
@@ -28,24 +32,41 @@ public class Timer : MonoBehaviour
 		int seconds = Mathf.FloorToInt(time % 60F);
 		int milliseconds = Mathf.FloorToInt((time * 100F) % 100F);
 		TimerText.text = minutes.ToString("00") + ":" + seconds.ToString("00") + ":" + milliseconds.ToString("00");
-		if (181 > time && time > 180)
-		{
-			TimerText.color = Color.black;
-			phase = 0;
-		}
-		else {
-			if (121 > time && time > 120)
+		
+		if (241 > time && time > 240)
 			{
-				TimerText.color = Color.red;
-				phase = 2;
+
+				TimerText.color = Color.white;
+				phase = 3;
+				controller1.spawnRate = 0.1f;
+				controller2.spawnRate = 0.1f;
+			}
+		
+		else{
+			if (181 > time && time > 180)
+			{
+				TimerText.color = Color.black;
+				phase = 3;
+				controller1.spawnRate = 0.5f;
+				controller2.spawnRate = 0.5f;
 			}
 			else {
-				if (61> time && time >60)
+				if (121 > time && time > 120)
 				{
-
-					TimerText.color = guicolor;
-					phase = 1;
+					TimerText.color = Color.red;
+					phase = 2;
+					controller1.spawnRate = 1.25f;
+					controller2.spawnRate = 1.25f;
 				}
-			}
-		} }
+				else {
+					if (61> time && time >60)
+					{
+
+						TimerText.color = guicolor;
+						phase = 1;
+						controller1.spawnRate = 2.5f;
+						controller2.spawnRate = 5.0f;
+					}
+				}
+			} }}
 }

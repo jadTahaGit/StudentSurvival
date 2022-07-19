@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Enemy
   - Weapon
+  - Timer
   layers:
   - Default
   - TransparentFX
