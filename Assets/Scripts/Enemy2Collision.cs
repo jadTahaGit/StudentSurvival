@@ -17,7 +17,7 @@ public class Enemy2Collision : MonoBehaviour
         else{
              if (other.tag == "Weapon")
                 {
-                Debug.Log(controller.health.ToString());
+               
                 controller.health -= other.gameObject.GetComponent<Pencilshootbehaviour>().damage;
                 Destroy(other.gameObject);
                     if (controller.health <= 0)
