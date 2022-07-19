@@ -17,6 +17,9 @@ public class Enemy1Controller : MonoBehaviour
         rb2d = GetComponent<Rigidbody2D>();
         player = GameObject.FindWithTag("Player");
         target = new Vector2(player.transform.position.x,player.transform.position.y);
+        GameObject timer = GameObject.FindWithTag("Timer");
+        int phase = timer.GetComponent<Timer>().phase;
+        health = 10 + 5 * phase;
     }
 
     // Update is called once per frame

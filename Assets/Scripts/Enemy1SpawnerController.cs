@@ -13,6 +13,8 @@ public class Enemy1SpawnerController : MonoBehaviour
     void Start()
     {
         StartCoroutine(EnemyWave());
+        
+       
     }
 
     // Update is called once per frame

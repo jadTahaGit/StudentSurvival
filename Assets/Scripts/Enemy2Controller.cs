@@ -9,6 +9,7 @@ public class Enemy2Controller : MonoBehaviour
     private Rigidbody2D rb2d;
     public float health = 15;
     [SerializeField]
+    
     Vector2 target;
     GameObject player;
     // Start is called before the first frame update
@@ -17,6 +18,10 @@ public class Enemy2Controller : MonoBehaviour
         rb2d = GetComponent<Rigidbody2D>();
         player = GameObject.FindWithTag("Player");
         target = new Vector2(player.transform.position.x,player.transform.position.y);
+        //timer = GameObject.FindWithTag("Timer").getComponent<Timer>;
+        GameObject timer = GameObject.FindWithTag("Timer");
+        int phase = timer.GetComponent <Timer>().phase;
+        health = 15 + 5 * phase;
     }
 
     // Update is called once per frame
