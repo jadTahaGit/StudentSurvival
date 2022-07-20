@@ -7,8 +7,9 @@ public class shootatmovement : MonoBehaviour
     public Rigidbody2D Pencil;
     public Transform Playertransform;
     private Rigidbody2D rb2d;
-    private float nextActionTime = 0.5f;
-    public float period = 0.1f;
+    [SerializeField]
+    private float timeuntilshot = 1.25f;
+    private float timer = 0;
     private PlayerController controller;
     // Start is called before the first frame update
     void Start()
@@ -20,19 +21,19 @@ public class shootatmovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        timer += Time.deltaTime;
 
-
-        if (Time.time > nextActionTime)
+        if (timer > timeuntilshot)
         {
-            nextActionTime += period;
-            // execute block of code here
+            timer = 0;
         
 
-        //pencilclone= Instantiate(Pencil, Playertransform.position, Playertransform.rotation);
+        
             Rigidbody2D pencilclone = Instantiate(Pencil, Playertransform.position, Playertransform.rotation);
             if (controller.lvl > 1)
             {
-                pencilclone.GetComponent<Pencilshootbehaviour>().damage = 15;
+                pencilclone.GetComponent<Pencilshootbehaviour>().owndamage.damage = 15;
+                timeuntilshot = 0.75f;
             }
                 /*Set the projectile moving.*/
                 if (rb2d.velocity.magnitude < 1)
@@ -47,7 +48,7 @@ public class shootatmovement : MonoBehaviour
             if (controller.lvl > 3)
             {
                 Rigidbody2D pencilclone2 = Instantiate(Pencil, Playertransform.position, Playertransform.rotation);
-                pencilclone2.GetComponent<Pencilshootbehaviour>().damage = 15;
+                pencilclone2.GetComponent<Pencilshootbehaviour>().owndamage.damage = 15;
                 if (rb2d.velocity.magnitude < 1)
                 {
 

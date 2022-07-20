@@ -8,6 +8,7 @@ TagManager:
   - Weapon
   - Timer
   - EXP
+  - Coffee
   layers:
   - Default
   - TransparentFX

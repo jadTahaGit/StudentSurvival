@@ -18,19 +18,26 @@ public class Enemy2Collision : MonoBehaviour
              if (other.tag == "Weapon")
                 {
                
-                controller.health -= other.gameObject.GetComponent<Pencilshootbehaviour>().damage;
-                Destroy(other.gameObject);
+                controller.health -= other.gameObject.GetComponent<weapondamage>().damage;
+                if (other.gameObject.GetComponent<Pencilshootbehaviour>() != null)
+                {
+
+                    Destroy(other.gameObject);
+                }
                     if (controller.health <= 0)
                     {
                     SpawnExp();
                     ScoreManager.instance.AddPoint();
-                    Destroy(this.gameObject);
+                    
+                        Destroy(this.gameObject);
+                    }
                }
+                
                                 
             }
         }
         
-    }
+    
 
     private void SpawnExp(){
         int n = Random.Range(0,4);

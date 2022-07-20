@@ -16,6 +16,12 @@ public class PlayerController : MonoBehaviour
     public HealthBarController healthBar;
     private ParticleSystem lvluplights;
     private AudioSource lvlupsound;
+    [SerializeField]
+    private GameObject coffee1;
+    [SerializeField]
+    private GameObject coffee2;
+    private coffeecontroller coffeecontrol1;
+    private coffeecontroller coffeecontrol2;
     void Start()
     {
         rb2d = GetComponent<Rigidbody2D>();
@@ -26,7 +32,13 @@ public class PlayerController : MonoBehaviour
         lvlupsound = GetComponent<AudioSource>();
         lvl = 1;
         exp = 0;
-        
+        coffeecontrol1 = coffee1.GetComponent<coffeecontroller>();
+        coffeecontrol2 = coffee2.GetComponent<coffeecontroller>();
+        coffeecontrol1.owncollider.enabled = false;
+        coffeecontrol1.ownrenderer.color = new Color(0f, 0f, 0f, 0f);
+        coffeecontrol2.owncollider.enabled = false;
+        coffeecontrol2.ownrenderer.color = new Color(0f, 0f, 0f, 0f);
+
     }
 
     void FixedUpdate()
@@ -73,12 +85,25 @@ public class PlayerController : MonoBehaviour
             exp += 1;
               
             Destroy(other.gameObject);
-                if (exp >= 30)
+                if (exp >= 20)
                 {
                 lvlupsound.Play();
                 lvluplights.Play();
                 lvl += 1;
                 exp = 0;
+                if(lvl==3)
+                {
+                    coffeecontrol1.owncollider.enabled = true;
+                    coffeecontrol1.ownrenderer.color = new Color(1f, 1f, 1f, 1f);
+                }
+                if(lvl==5)
+                {
+                    coffee2.SetActive(true);
+                    coffeecontrol2.owncollider.enabled = true;
+                    coffeecontrol2.ownrenderer.color = new Color(1f, 1f, 1f, 1f);
+                    coffeecontrol1.downtime = 0.5f;
+                    coffeecontrol2.downtime = 0.5f;
+                }
                 }
 
             }
