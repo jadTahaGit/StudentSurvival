@@ -10,6 +10,7 @@ public class DialogueManager : MonoBehaviour
 
 	public float delay;
 	public TextMeshProUGUI dialogueText;
+	public AudioSource sound;
 
 	private Queue<string> sentences;
     // Start is called before the first frame update
@@ -51,6 +52,7 @@ public class DialogueManager : MonoBehaviour
     	foreach(char letter in sentence.ToCharArray())
     	{
     		dialogueText.text += letter;
+			sound.Play();
     		yield return new WaitForSeconds(delay);
     	}
     }
