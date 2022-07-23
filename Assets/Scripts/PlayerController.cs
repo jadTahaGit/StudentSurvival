@@ -22,7 +22,8 @@ public class PlayerController : MonoBehaviour
     private int currentHealth;
     public HealthBarController healthBar;
     private ParticleSystem lvluplights;
-    private AudioSource lvlupsound;
+    public AudioSource lvlupsound;
+    public AudioSource hitsound;
     [SerializeField]
     private GameObject coffee1;
     [SerializeField]
@@ -38,7 +39,6 @@ public class PlayerController : MonoBehaviour
         healthBar.SetMaxHealth(maxHealth);
         lvluplights = GetComponent<ParticleSystem>();
         lvluplights.Stop();
-        lvlupsound = GetComponent<AudioSource>();
         lvl = 1;
         exp = 0;
         coffeecontrol1 = coffee1.GetComponent<coffeecontroller>();
@@ -107,7 +107,7 @@ public class PlayerController : MonoBehaviour
 
     public void TakeDamage(int damage){
         
-        
+        hitsound.Play();
         currentHealth -= damage;
         if(currentHealth <= 0)
         {
