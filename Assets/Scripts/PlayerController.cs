@@ -127,11 +127,7 @@ public class PlayerController : MonoBehaviour
             }
 
         }
-        else
-        {
-            Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            rb2d.MovePosition(mousePosition);
-        }
+        
         
        
     }
@@ -154,6 +150,8 @@ public class PlayerController : MonoBehaviour
             DieAni();
             enableKeyboardControl = false;
             healthBar.SetHealth(currentHealth);
+            rb2d.isKinematic = true;
+            rb2d.velocity = Vector2.zero;
             // wait a bit(2s) before Loading
             StartCoroutine(loadGameOverMenu());
             
