@@ -294,13 +294,13 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      mayor_walk_right_strip8_6: 294790649
+      mayor_walk_right_strip8_0: 219641564
       mayor_walk_right_strip8_1: 411269927
       mayor_walk_right_strip8_7: -1231878285
       mayor_walk_right_strip8_2: -1694213354
       mayor_walk_right_strip8_3: 410352219
       mayor_walk_right_strip8_5: 988804692
-      mayor_walk_right_strip8_0: 219641564
+      mayor_walk_right_strip8_6: 294790649
       mayor_walk_right_strip8_4: -1723482101
   spritePackingTag: 
   pSDRemoveMatte: 0

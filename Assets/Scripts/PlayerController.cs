@@ -128,6 +128,7 @@ public class PlayerController : MonoBehaviour
     public void TakeDamage(int damage){
         
         hitsound.Play();
+        HurtAni();
         currentHealth -= damage;
         if(currentHealth <= 0)
         {
@@ -139,10 +140,17 @@ public class PlayerController : MonoBehaviour
 
             healthBar.SetHealth(currentHealth); 
         }
-        
-        
-       
+             
     }
+
+    void HurtAni()
+        {
+                anim.SetTrigger("hurt");
+                if (direction == 1)
+                    rb2d.AddForce(new Vector2(-5f, 1f), ForceMode2D.Impulse);
+                else
+                    rb2d.AddForce(new Vector2(5f, 1f), ForceMode2D.Impulse);
+        }
     private void OnTriggerEnter2D(Collider2D other)
     {
         
