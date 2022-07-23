@@ -12,3 +12,5 @@ Nachdem der Spieler 30 von diesen sammelt erhöht sich sein Lvl dies verstärkt 
 
 Das Spiel wird mit der vergangenen Zeit schwerer große Schwierigkeitsänderungen sind an der Farbe des Timers  zu erkennen.
 Maximale Schwierigkeit wird nach 4 Minuten erreicht. (Viel Glück beim versuch 5 Minuten zu erreichen)
+
+Aufteilung der Arbeit https://docs.google.com/document/d/1KcaMAF3-tGAoc04CWSOaYY4WYwckUGkyEDyNNAFadLg/edit 
