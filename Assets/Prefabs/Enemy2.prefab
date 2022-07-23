@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 1511979318424450097}
   - component: {fileID: 1511979318424450096}
   - component: {fileID: 5560151532904317008}
+  - component: {fileID: 7861578859511721626}
   m_Layer: 0
   m_Name: Enemy2
   m_TagString: Enemy
@@ -157,3 +158,23 @@ MonoBehaviour:
   exp3: {fileID: 6412232636526773903, guid: 880d362ba41cfda46a68894bc3bb1495, type: 3}
   damage: 100
   controller: {fileID: 1511979318424450096}
+--- !u!95 &7861578859511721626
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1511979318424450111}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: fc8ecae05b557124e8dce7e4f510e565, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0

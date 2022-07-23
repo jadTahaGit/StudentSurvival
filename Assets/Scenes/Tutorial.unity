@@ -471,10 +471,9 @@ MonoBehaviour:
     sentences:
     - Oh no...
     - Finals are approaching rapidly...
-    - Try to survive and grab your trusty pencil to fight off evil professors and
-      your inner demons!
-    - Move and shoot at them by pressing W, A, S, D.
-    - Keep an eye out for performance enhancing items.
+    - Try to survive and grab your trusty pencil to fight off evil professors!
+    - Move and shoot at them by pressing W, A, S, D or the arrow keys.
+    - Grow stronger by collecting the treasures they leave behind.
     - Good luck!
 --- !u!1 &1276461552
 GameObject:
