@@ -15,6 +15,8 @@ public class PlayerController : MonoBehaviour
  
     [SerializeField]
     private float speed=2;
+
+    private float kickboardSpeed ;
     public int lvl;
     public int exp;
     [SerializeField]
@@ -38,7 +40,8 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         rb2d = GetComponent<Rigidbody2D>();
-        anim = transform.GetChild(0).GetComponent<Animator>(); 
+        anim = transform.GetChild(0).GetComponent<Animator>();
+        kickboardSpeed = speed + 4;
 
 
         currentHealth = maxHealth;
@@ -60,13 +63,11 @@ public class PlayerController : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.Space) && isKickboard)
             {
-                Debug.Log("KickBoard Weg");
                 isKickboard = false;
                 anim.SetBool("isKickBoard", false);
             }
             else if (Input.GetKeyDown(KeyCode.Space) && !isKickboard )
             {
-                Debug.Log("KickBoard Da");
                 isKickboard = true;
                 anim.SetBool("isKickBoard", true);
             }
@@ -79,12 +80,14 @@ public class PlayerController : MonoBehaviour
             KickBoard();
             float moveHorizontal = Input.GetAxis("Horizontal");
             float moveVertical = Input.GetAxis("Vertical");
-             Vector2 movement = new Vector2(moveHorizontal, moveVertical);
-             rb2d.velocity = (movement * speed);
+            Vector2 movement = new Vector2(moveHorizontal, moveVertical);
+
+             
             
              if (!isKickboard){
 
                 anim.SetBool("isRun", false);
+                rb2d.velocity = (movement * speed);
 
                 if (Input.GetAxisRaw("Horizontal") < 0)
                 {
@@ -105,7 +108,8 @@ public class PlayerController : MonoBehaviour
             }
 
              if (isKickboard)
-            {
+            {   
+                rb2d.velocity = (movement * kickboardSpeed);
                 if (Input.GetAxisRaw("Horizontal") < 0)
                 {
                     direction = -0.3f;
