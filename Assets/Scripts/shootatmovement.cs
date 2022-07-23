@@ -38,9 +38,15 @@ public class shootatmovement : MonoBehaviour
                 /*Set the projectile moving.*/
                 if (rb2d.velocity.magnitude < 1)
             {
-
-                pencilclone.velocity = Vector2.right * 2;
-            }
+                if (controller.defaultshootright)
+                {
+                    pencilclone.velocity = Vector2.right * 2;
+                }
+                else
+                {
+                    pencilclone.velocity = Vector2.left * 2;
+                }
+                }
             else
             {
                 pencilclone.velocity = rb2d.velocity * 2;

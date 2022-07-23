@@ -35,7 +35,7 @@ public class PlayerController : MonoBehaviour
     private GameObject coffee2;
     private coffeecontroller coffeecontrol1;
     private coffeecontroller coffeecontrol2;
-
+    public bool defaultshootright=true;
 
     void Start()
     {
@@ -96,13 +96,15 @@ public class PlayerController : MonoBehaviour
                     transform.GetChild(0).localScale = new Vector3(direction, 0.3f, 0.3f);
                    
                         anim.SetBool("isRun", true);
-                    
+                    defaultshootright = false;
+
                 }
                 if (Input.GetAxisRaw("Horizontal") > 0)
                 {
                     direction = 0.3f;
                     transform.GetChild(0).localScale = new Vector3(direction, 0.3f, 0.3f);
                     anim.SetBool("isRun", true);
+                    defaultshootright = true;
 
                 }
             }
