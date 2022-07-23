@@ -1,14 +1,18 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using System.Collections;
+using System.Collections.Generic;
 
 public class PlayerController : MonoBehaviour
 {
+    private float delayTime = 2f;
+
     [SerializeField]
     private float direction = 0.3f;
     private Animator anim;
     private bool isKickboard = false;
+    
  
-
     [SerializeField]
     private float speed=2;
     public int lvl;
@@ -29,6 +33,8 @@ public class PlayerController : MonoBehaviour
     private GameObject coffee2;
     private coffeecontroller coffeecontrol1;
     private coffeecontroller coffeecontrol2;
+
+
     void Start()
     {
         rb2d = GetComponent<Rigidbody2D>();
@@ -124,6 +130,11 @@ public class PlayerController : MonoBehaviour
        
     }
 
+    // for the Delay before Loading
+    IEnumerator loadGameOverMenu() {
+     yield return new WaitForSeconds(delayTime);
+     SceneManager.LoadScene("GameOver");
+    }
 
     public void TakeDamage(int damage){
         
@@ -133,10 +144,12 @@ public class PlayerController : MonoBehaviour
         if(currentHealth <= 0)
         {
             currentHealth = 0;
-            Debug.Log("Ded");
-            PlayerPrefs.SetInt("score", ScoreManager.instance.score);
-            SceneManager.LoadScene("GameOver");
-        }else{
+            PlayerPrefs.SetInt("score", ScoreManager.instance.score); 
+            // wait a bit(2s) before Loading
+            StartCoroutine(loadGameOverMenu());
+            
+
+        } else{
 
             healthBar.SetHealth(currentHealth); 
         }
@@ -151,9 +164,9 @@ public class PlayerController : MonoBehaviour
                 else
                     rb2d.AddForce(new Vector2(5f, 1f), ForceMode2D.Impulse);
         }
+
     private void OnTriggerEnter2D(Collider2D other)
     {
-        
             if (other.tag == "EXP")
             {
             
@@ -184,5 +197,7 @@ public class PlayerController : MonoBehaviour
             }
         }
 
-    
+
+ 
+
 }

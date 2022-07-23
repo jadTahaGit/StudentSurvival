@@ -23,4 +23,7 @@ public class GameOverMenu : MonoBehaviour
     {
         SceneManager.LoadScene("Startmenu");
     }
+
+  
+
 }
