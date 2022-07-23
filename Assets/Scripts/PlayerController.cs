@@ -164,6 +164,9 @@ public class PlayerController : MonoBehaviour
 
     void HurtAni()
         {
+                isKickboard = false;
+                anim.SetBool("isKickBoard", false);
+
                 anim.SetTrigger("hurt");
                 if (direction == 1)
                     rb2d.AddForce(new Vector2(-5f, 1f), ForceMode2D.Impulse);
