@@ -4,12 +4,10 @@ using UnityEngine.SceneManagement;
 public class PlayerController : MonoBehaviour
 {
     [SerializeField]
+    //public float movePower = 10f; 
+    private float direction = 0.3f;
+    private Animator anim; 
 
-    //public float movePower = 10f; //By Jad
-
-    private float direction = 0.3f;//By Jad
-
-    private Animator anim; //By Jad
     [SerializeField]
     private float speed=2;
     public int lvl;
@@ -59,41 +57,28 @@ public class PlayerController : MonoBehaviour
              Vector2 movement = new Vector2(moveHorizontal, moveVertical);
              rb2d.velocity = (movement * speed);
             
-            //Vector3 moveVelocity = Vector3.zero;
                 anim.SetBool("isRun", false);
 
                 if (Input.GetAxisRaw("Horizontal") < 0)
                 {
                     direction = -0.3f;
-                   // moveVelocity = Vector3.left;
 
 
                     transform.GetChild(0).localScale = new Vector3(direction, 0.3f, 0.3f);
-                    if (!anim.GetBool("isJump")) {
+                   
                         anim.SetBool("isRun", true);
-                        
-                    }
-
+                    
                 }
                 if (Input.GetAxisRaw("Horizontal") > 0)
                 {
                     direction = 0.3f;
-                //    moveVelocity = Vector3.right;
-
                     transform.GetChild(0).localScale = new Vector3(direction, 0.3f, 0.3f);
-                    if (!anim.GetBool("isJump"))
-                        anim.SetBool("isRun", true);
+                    anim.SetBool("isRun", true);
 
                 }
                 
-                if(Input.GetAxisRaw("Vertical") > 0){
-             //         moveVelocity = Vector3.up;
-                }
-                if(Input.GetAxisRaw("Vertical") < 0){
-              //        moveVelocity = Vector3.down;
-                }
+              
 
-              //  transform.position += moveVelocity * movePower * Time.deltaTime;
         }
         else
         {
