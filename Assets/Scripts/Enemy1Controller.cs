@@ -11,6 +11,7 @@ public class Enemy1Controller : MonoBehaviour
     private float speed = 1.0f;
     private Rigidbody2D rb2d;
     public float health = 10;
+    public Vector2 targetvec; 
     [SerializeField]
     Vector2 target;
     GameObject player;
@@ -32,20 +33,30 @@ public class Enemy1Controller : MonoBehaviour
 
     // Update is called once per frame
     void FixedUpdate()
-    {
-        if(target.x > 0 ){
-            Debug.Log("+ve");
-            renderer.flipX = false;
-        } else{
-            renderer.flipX = true;
-           Debug.Log("-ve");
-        }
+    {//took the players coordinate meaning it only flipped if players position related to the center of the map was + or - not in relation to the enemy himself
+        //if(target.x > 0 ){
+       //     Debug.Log("+ve");
+        //    renderer.flipX = false;
+       // } else{
+       //     renderer.flipX = true;
+       //    Debug.Log("-ve");
+       // }
 
         float step = speed * Time.deltaTime;
          Vector2 vectorTo = Vector2.MoveTowards(transform.position,target,step);
+        targetvec = vectorTo;
          rb2d.MovePosition(vectorTo);
          target = new Vector2(player.transform.position.x,player.transform.position.y);
 
-
+        if (vectorTo.x > rb2d.position.x)
+        {
+            Debug.Log("+ve");
+            renderer.flipX = false;
+        }
+        else
+        {
+            renderer.flipX = true;
+            Debug.Log("-ve");
+        }
     }
 }
