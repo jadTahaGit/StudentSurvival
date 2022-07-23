@@ -144,11 +144,11 @@ public class PlayerController : MonoBehaviour
         if(currentHealth <= 0)
         {
             currentHealth = 0;
-            PlayerPrefs.SetInt("score", ScoreManager.instance.score); 
+            PlayerPrefs.SetInt("score", ScoreManager.instance.score);
+            DieAni();
             // wait a bit(2s) before Loading
             StartCoroutine(loadGameOverMenu());
             
-
         } else{
 
             healthBar.SetHealth(currentHealth); 
@@ -165,6 +165,12 @@ public class PlayerController : MonoBehaviour
                     rb2d.AddForce(new Vector2(5f, 1f), ForceMode2D.Impulse);
         }
 
+    void DieAni()
+    {
+                isKickboard = false;
+                anim.SetBool("isKickBoard", false);
+                anim.SetTrigger("die");            
+    }
     private void OnTriggerEnter2D(Collider2D other)
     {
             if (other.tag == "EXP")
