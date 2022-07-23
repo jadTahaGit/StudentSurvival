@@ -29,7 +29,8 @@ public class Enemy1Controller : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-         float step = speed * Time.deltaTime;
+        //vector to x coord +/- sprite spiegeln links recht animation
+        float step = speed * Time.deltaTime;
          Vector2 vectorTo = Vector2.MoveTowards(transform.position,target,step);
          rb2d.MovePosition(vectorTo);
          target = new Vector2(player.transform.position.x,player.transform.position.y);
