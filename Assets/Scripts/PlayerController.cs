@@ -4,9 +4,10 @@ using UnityEngine.SceneManagement;
 public class PlayerController : MonoBehaviour
 {
     [SerializeField]
-    //public float movePower = 10f; 
     private float direction = 0.3f;
-    private Animator anim; 
+    private Animator anim;
+    private bool isKickboard = false;
+ 
 
     [SerializeField]
     private float speed=2;
@@ -31,7 +32,8 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         rb2d = GetComponent<Rigidbody2D>();
-        anim = transform.GetChild(0).GetComponent<Animator>(); //by Jad
+        anim = transform.GetChild(0).GetComponent<Animator>(); 
+
 
         currentHealth = maxHealth;
         healthBar.SetMaxHealth(maxHealth);
@@ -48,21 +50,39 @@ public class PlayerController : MonoBehaviour
 
     }
 
+    void KickBoard()
+        {
+            if (Input.GetKeyDown(KeyCode.Space) && isKickboard)
+            {
+                Debug.Log("KickBoard Weg");
+                isKickboard = false;
+                anim.SetBool("isKickBoard", false);
+            }
+            else if (Input.GetKeyDown(KeyCode.Space) && !isKickboard )
+            {
+                Debug.Log("KickBoard Da");
+                isKickboard = true;
+                anim.SetBool("isKickBoard", true);
+            }
+
+        }
     void FixedUpdate()
     {
         if (enableKeyboardControl)
         {
+            KickBoard();
             float moveHorizontal = Input.GetAxis("Horizontal");
             float moveVertical = Input.GetAxis("Vertical");
              Vector2 movement = new Vector2(moveHorizontal, moveVertical);
              rb2d.velocity = (movement * speed);
             
+             if (!isKickboard){
+
                 anim.SetBool("isRun", false);
 
                 if (Input.GetAxisRaw("Horizontal") < 0)
                 {
                     direction = -0.3f;
-
 
                     transform.GetChild(0).localScale = new Vector3(direction, 0.3f, 0.3f);
                    
@@ -76,8 +96,23 @@ public class PlayerController : MonoBehaviour
                     anim.SetBool("isRun", true);
 
                 }
-                
-              
+            }
+
+             if (isKickboard)
+            {
+                if (Input.GetAxisRaw("Horizontal") < 0)
+                {
+                    direction = -0.3f;
+                    transform.GetChild(0).localScale = new Vector3(direction, 0.3f, 0.3f);
+
+                }
+
+                if (Input.GetAxisRaw("Horizontal") > 0)
+                {
+                    direction = 0.3f;
+                    transform.GetChild(0).localScale = new Vector3(direction, 0.3f, 0.3f);
+                }
+            }
 
         }
         else
