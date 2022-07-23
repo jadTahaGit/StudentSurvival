@@ -150,6 +150,7 @@ public class PlayerController : MonoBehaviour
             currentHealth = 0;
             PlayerPrefs.SetInt("score", ScoreManager.instance.score);
             DieAni();
+            enableKeyboardControl = false;
             healthBar.SetHealth(currentHealth);
             // wait a bit(2s) before Loading
             StartCoroutine(loadGameOverMenu());
