@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class Enemy1Controller : MonoBehaviour
 {
-    [SerializeField]
-    private float direction = 2f;
+
+    private SpriteRenderer renderer;
 
     [SerializeField]
     private float speed = 1.0f;
@@ -17,6 +17,7 @@ public class Enemy1Controller : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        renderer = GetComponent<SpriteRenderer>();
         rb2d = GetComponent<Rigidbody2D>();
         player = GameObject.FindWithTag("Player");
         target = new Vector2(player.transform.position.x,player.transform.position.y);
@@ -34,11 +35,9 @@ public class Enemy1Controller : MonoBehaviour
     {
         if(target.x > 0 ){
             Debug.Log("+ve");
-            direction = +2f;
-            // transform.localScale = new Vector3(direction, 2f, 2f);
+            renderer.flipX = false;
         } else{
-           direction = -2f;
-        //    transform.localScale = new Vector3(direction, 2f, 2f);   
+            renderer.flipX = true;
            Debug.Log("-ve");
         }
 
