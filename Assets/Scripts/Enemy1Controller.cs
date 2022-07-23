@@ -5,6 +5,9 @@ using UnityEngine;
 public class Enemy1Controller : MonoBehaviour
 {
     [SerializeField]
+    private float direction = 2f;
+
+    [SerializeField]
     private float speed = 1.0f;
     private Rigidbody2D rb2d;
     public float health = 10;
@@ -29,7 +32,16 @@ public class Enemy1Controller : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        //vector to x coord +/- sprite spiegeln links recht animation
+        if(target.x > 0 ){
+            Debug.Log("+ve");
+            direction = +2f;
+            // transform.localScale = new Vector3(direction, 2f, 2f);
+        } else{
+           direction = -2f;
+        //    transform.localScale = new Vector3(direction, 2f, 2f);   
+           Debug.Log("-ve");
+        }
+
         float step = speed * Time.deltaTime;
          Vector2 vectorTo = Vector2.MoveTowards(transform.position,target,step);
          rb2d.MovePosition(vectorTo);
