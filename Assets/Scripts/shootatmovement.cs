@@ -39,11 +39,11 @@ public class shootatmovement : MonoBehaviour
                 if (rb2d.velocity.magnitude < 1)
             {
 
-                pencilclone.velocity = Vector2.right * 3;
+                pencilclone.velocity = Vector2.right * 2;
             }
             else
             {
-                pencilclone.velocity = rb2d.velocity * 3;
+                pencilclone.velocity = rb2d.velocity * 2;
             }
             if (controller.lvl > 3)
             {
@@ -52,11 +52,11 @@ public class shootatmovement : MonoBehaviour
                 if (rb2d.velocity.magnitude < 1)
                 {
 
-                    pencilclone2.velocity = Vector2.left * 3;
+                    pencilclone2.velocity = Vector2.left * 2;
                 }
                 else
                 {
-                    pencilclone2.velocity = -rb2d.velocity * 3;
+                    pencilclone2.velocity = -rb2d.velocity * 2;
                 }
             }
 
