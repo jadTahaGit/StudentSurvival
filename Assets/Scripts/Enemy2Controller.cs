@@ -4,25 +4,27 @@ using UnityEngine;
 
 public class Enemy2Controller : MonoBehaviour
 {
+    private SpriteRenderer renderer;
+
     [SerializeField]
-    private float speed = 1.3f;
+    private float speed = 1.0f;
     private Rigidbody2D rb2d;
-    public float health = 15;
+    public float health = 10;
+    public Vector2 targetvec;
     [SerializeField]
-    
     Vector2 target;
     GameObject player;
     // Start is called before the first frame update
     void Start()
     {
+        renderer = GetComponent<SpriteRenderer>();
         rb2d = GetComponent<Rigidbody2D>();
         player = GameObject.FindWithTag("Player");
-        target = new Vector2(player.transform.position.x,player.transform.position.y);
-        //timer = GameObject.FindWithTag("Timer").getComponent<Timer>;
+        target = new Vector2(player.transform.position.x, player.transform.position.y);
         GameObject timer = GameObject.FindWithTag("Timer");
-        int phase = timer.GetComponent <Timer>().phase;
-        health = 15 + 5 * phase;
-        if(phase == 3)
+        int phase = timer.GetComponent<Timer>().phase;
+        health = 10 + 5 * phase;
+        if (phase == 3)
         {
             speed = speed * 1.25f;
         }
@@ -31,11 +33,19 @@ public class Enemy2Controller : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-         float step = speed * Time.deltaTime;
-         Vector2 vectorTo = Vector2.MoveTowards(transform.position,target,step);
-         rb2d.MovePosition(vectorTo);
-         target = new Vector2(player.transform.position.x,player.transform.position.y);
+        float step = speed * Time.deltaTime;
+        Vector2 vectorTo = Vector2.MoveTowards(transform.position, target, step);
+        targetvec = vectorTo;
+        rb2d.MovePosition(vectorTo);
+        target = new Vector2(player.transform.position.x, player.transform.position.y);
 
-
+        if (vectorTo.x > rb2d.position.x)
+        {
+            renderer.flipX = false;
+        }
+        else
+        {
+            renderer.flipX = true;
+        }
     }
 }
