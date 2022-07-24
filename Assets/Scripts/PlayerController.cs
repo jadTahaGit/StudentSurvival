@@ -14,7 +14,7 @@ public class PlayerController : MonoBehaviour
     
  
     [SerializeField]
-    private float speed=2;
+    private float speed=3;
 
     private float kickboardSpeed ;
     public int lvl;
@@ -121,13 +121,14 @@ public class PlayerController : MonoBehaviour
                 {
                     direction = -0.3f;
                     transform.GetChild(0).localScale = new Vector3(direction, 0.3f, 0.3f);
-
+                    defaultshootright = false;
                 }
 
                 if (Input.GetAxisRaw("Horizontal") > 0)
                 {
                     direction = 0.3f;
                     transform.GetChild(0).localScale = new Vector3(direction, 0.3f, 0.3f);
+                    defaultshootright = true;
                 }
             }
 
@@ -212,7 +213,7 @@ public class PlayerController : MonoBehaviour
             exp += 1;
               
             Destroy(other.gameObject);
-                if (exp >= 20)
+                if (exp >= 20&&lvl<=7)
                 {
                 lvlupsound.Play();
                 lvluplights.Play();
@@ -230,6 +231,16 @@ public class PlayerController : MonoBehaviour
                     coffeecontrol2.ownrenderer.color = new Color(1f, 1f, 1f, 1f);
                     coffeecontrol1.downtime = 0.5f;
                     coffeecontrol2.downtime = 0.5f;
+                }
+                if(lvl == 6)
+                {
+                    speed = 3.5F;
+                }
+                if(lvl ==7)
+                {
+                    coffeecontrol1.downtime = 0.2f;
+                    coffeecontrol2.downtime = 0.2f;
+
                 }
                 }
 
