@@ -7,9 +7,9 @@ public class Enemy2Controller : MonoBehaviour
     private SpriteRenderer renderer;
 
     [SerializeField]
-    private float speed = 1.0f;
+    private float speed = 1.3f;
     private Rigidbody2D rb2d;
-    public float health = 10;
+    public float health = 15;
     public Vector2 targetvec;
     [SerializeField]
     Vector2 target;
@@ -23,7 +23,7 @@ public class Enemy2Controller : MonoBehaviour
         target = new Vector2(player.transform.position.x, player.transform.position.y);
         GameObject timer = GameObject.FindWithTag("Timer");
         int phase = timer.GetComponent<Timer>().phase;
-        health = 10 + 5 * phase;
+        health = 15 + 5 * phase;
         if (phase == 3)
         {
             speed = speed * 1.25f;
