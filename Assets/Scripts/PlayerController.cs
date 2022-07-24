@@ -121,13 +121,14 @@ public class PlayerController : MonoBehaviour
                 {
                     direction = -0.3f;
                     transform.GetChild(0).localScale = new Vector3(direction, 0.3f, 0.3f);
-
+                    defaultshootright = false;
                 }
 
                 if (Input.GetAxisRaw("Horizontal") > 0)
                 {
                     direction = 0.3f;
                     transform.GetChild(0).localScale = new Vector3(direction, 0.3f, 0.3f);
+                    defaultshootright = true;
                 }
             }
 
