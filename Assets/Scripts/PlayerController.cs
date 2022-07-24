@@ -29,6 +29,7 @@ public class PlayerController : MonoBehaviour
     private ParticleSystem lvluplights;
     public AudioSource lvlupsound;
     public AudioSource hitsound;
+    public AudioSource kickBoardSound;
     [SerializeField]
     private GameObject coffee1;
     [SerializeField]
@@ -137,10 +138,12 @@ public class PlayerController : MonoBehaviour
         
        
     }
-
+  
 
     IEnumerator KickboardLoader() {
      yield return new WaitForSeconds(20f);
+     kickBoardSound.Play();
+     yield return new WaitForSeconds(1f);
      KickBoard();
      yield return new WaitForSeconds(5f);
      KickBoard();
@@ -155,30 +158,26 @@ public class PlayerController : MonoBehaviour
     }
 
     public void TakeDamage(int damage){
-        if (dead == false)
+        
+        hitsound.Play();
+        HurtAni();
+        currentHealth -= damage;
+        if(currentHealth <= 0&&dead ==false)
         {
-            hitsound.Play();
-            HurtAni();
-            currentHealth -= damage;
-            if (currentHealth <= 0)
-            {
-                dead = true;
-                currentHealth = 0;
-                PlayerPrefs.SetInt("score", ScoreManager.instance.score);
-                DieAni();
-                enableKeyboardControl = false;
-                healthBar.SetHealth(currentHealth);
-                rb2d.isKinematic = true;
-                rb2d.velocity = Vector2.zero;
-                // wait a bit(2s) before Loading
-                StartCoroutine(loadGameOverMenu());
+            dead = true;
+            currentHealth = 0;
+            PlayerPrefs.SetInt("score", ScoreManager.instance.score);
+            DieAni();
+            enableKeyboardControl = false;
+            healthBar.SetHealth(currentHealth);
+            rb2d.isKinematic = true;
+            rb2d.velocity = Vector2.zero;
+            // wait a bit(2s) before Loading
+            StartCoroutine(loadGameOverMenu());
+            
+        } else{
 
-            }
-            else
-            {
-
-                healthBar.SetHealth(currentHealth);
-            }
+            healthBar.SetHealth(currentHealth); 
         }
              
     }
