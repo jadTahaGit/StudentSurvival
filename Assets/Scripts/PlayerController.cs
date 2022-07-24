@@ -146,7 +146,7 @@ public class PlayerController : MonoBehaviour
         hitsound.Play();
         HurtAni();
         currentHealth -= damage;
-        if(currentHealth <= 0&&dead!)
+        if(currentHealth <= 0&&dead ==false)
         {
             dead = true;
             currentHealth = 0;
