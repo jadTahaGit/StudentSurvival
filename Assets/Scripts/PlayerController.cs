@@ -140,12 +140,14 @@ public class PlayerController : MonoBehaviour
 
 
     IEnumerator KickboardLoader() {
+     // reset always when start
+     isKickboard = true;
+     KickBoard();
      yield return new WaitForSeconds(20f);
      kickBoardSound.Play();
      yield return new WaitForSeconds(1f);
       // added
      yield return new WaitWhile(() => Input.GetKeyDown(KeyCode.Space) == false);
-     Debug.Log("SpaceKey Pressed");
      KickBoard();         
      yield return new WaitForSeconds(5f);
      KickBoard();
