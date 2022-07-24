@@ -36,6 +36,7 @@ public class PlayerController : MonoBehaviour
     private coffeecontroller coffeecontrol1;
     private coffeecontroller coffeecontrol2;
     public bool defaultshootright=true;
+    private bool dead = false;
 
     void Start()
     {
@@ -145,8 +146,9 @@ public class PlayerController : MonoBehaviour
         hitsound.Play();
         HurtAni();
         currentHealth -= damage;
-        if(currentHealth <= 0)
+        if(currentHealth <= 0&&dead!)
         {
+            dead = true;
             currentHealth = 0;
             PlayerPrefs.SetInt("score", ScoreManager.instance.score);
             DieAni();
