@@ -67,13 +67,11 @@ public class PlayerController : MonoBehaviour
 
     void KickBoard()
         {
-            // Input.GetKeyDown(KeyCode.Space) && //removed
             if (isKickboard)
             {
                 isKickboard = false;
                 anim.SetBool("isKickBoard", false);
             }
-            // Input.GetKeyDown(KeyCode.Space) && //removed
             else if ( !isKickboard )
             {
                 isKickboard = true;
@@ -140,11 +138,15 @@ public class PlayerController : MonoBehaviour
     }
   
 
+
     IEnumerator KickboardLoader() {
      yield return new WaitForSeconds(20f);
      kickBoardSound.Play();
      yield return new WaitForSeconds(1f);
-     KickBoard();
+      // added
+     yield return new WaitWhile(() => Input.GetKeyDown(KeyCode.Space) == false);
+     Debug.Log("SpaceKey Pressed");
+     KickBoard();         
      yield return new WaitForSeconds(5f);
      KickBoard();
      StartCoroutine(KickboardLoader());
