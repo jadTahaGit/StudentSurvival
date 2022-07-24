@@ -162,12 +162,13 @@ public class PlayerController : MonoBehaviour
      SceneManager.LoadScene("GameOver");
     }
 
-    public void TakeDamage(int damage){
-        
+    public void TakeDamage(int damage)
+    {
+        if (dead == false) { 
         hitsound.Play();
         HurtAni();
         currentHealth -= damage;
-        if(currentHealth <= 0&&dead ==false)
+        if (currentHealth <= 0)
         {
             dead = true;
             currentHealth = 0;
@@ -179,12 +180,14 @@ public class PlayerController : MonoBehaviour
             rb2d.velocity = Vector2.zero;
             // wait a bit(2s) before Loading
             StartCoroutine(loadGameOverMenu());
-            
-        } else{
 
-            healthBar.SetHealth(currentHealth); 
         }
-             
+        else
+        {
+
+            healthBar.SetHealth(currentHealth);
+        }
+    } 
     }
 
     void HurtAni()
