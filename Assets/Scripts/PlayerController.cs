@@ -43,6 +43,8 @@ public class PlayerController : MonoBehaviour
         rb2d = GetComponent<Rigidbody2D>();
         anim = transform.GetChild(0).GetComponent<Animator>();
         kickboardSpeed = speed + 4;
+        StartCoroutine(KickboardLoader());
+
 
 
         currentHealth = maxHealth;
@@ -64,23 +66,24 @@ public class PlayerController : MonoBehaviour
 
     void KickBoard()
         {
-            if (Input.GetKeyDown(KeyCode.Space) && isKickboard)
+            // Input.GetKeyDown(KeyCode.Space) && //removed
+            if (isKickboard)
             {
                 isKickboard = false;
                 anim.SetBool("isKickBoard", false);
             }
-            else if (Input.GetKeyDown(KeyCode.Space) && !isKickboard )
+            // Input.GetKeyDown(KeyCode.Space) && //removed
+            else if ( !isKickboard )
             {
                 isKickboard = true;
                 anim.SetBool("isKickBoard", true);
-            }
 
+            }
         }
     void FixedUpdate()
     {
         if (enableKeyboardControl)
         {
-            KickBoard();
             float moveHorizontal = Input.GetAxis("Horizontal");
             float moveVertical = Input.GetAxis("Vertical");
             Vector2 movement = new Vector2(moveHorizontal, moveVertical);
@@ -134,6 +137,16 @@ public class PlayerController : MonoBehaviour
         
        
     }
+
+
+    IEnumerator KickboardLoader() {
+     yield return new WaitForSeconds(20f);
+     KickBoard();
+     yield return new WaitForSeconds(5f);
+     KickBoard();
+     StartCoroutine(KickboardLoader());
+    }
+
 
     // for the Delay before Loading
     IEnumerator loadGameOverMenu() {
