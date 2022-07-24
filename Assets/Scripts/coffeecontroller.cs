@@ -9,10 +9,12 @@ public class coffeecontroller : MonoBehaviour
     public SpriteRenderer ownrenderer;
     public float downtime = 1;
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         owncollider = GetComponent<Collider2D>();
+        Debug.Log("got collider", owncollider);
         ownrenderer = GetComponent<SpriteRenderer>();
+        Debug.Log("got renderer", ownrenderer);
 
     }
 
