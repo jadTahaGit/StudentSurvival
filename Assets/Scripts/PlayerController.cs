@@ -211,7 +211,7 @@ public class PlayerController : MonoBehaviour
             exp += 1;
               
             Destroy(other.gameObject);
-                if (exp >= 20)
+                if (exp >= 20&&lvl<=7)
                 {
                 lvlupsound.Play();
                 lvluplights.Play();
