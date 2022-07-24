@@ -50,12 +50,10 @@ public class PlayerController : MonoBehaviour
         lvluplights.Stop();
         lvl = 1;
         exp = 0;
-        Debug.Log(coffeecontrol1);
-        Debug.Log(coffeecontrol2);
+       
         coffeecontrol1 = coffee1.GetComponent<coffeecontroller>();
         coffeecontrol2 = coffee2.GetComponent<coffeecontroller>();
-        Debug.Log(coffeecontrol1);
-        Debug.Log(coffeecontrol2);
+        
         coffeecontrol1.owncollider.enabled = false;
         coffeecontrol1.ownrenderer.color = new Color(0f, 0f, 0f, 0f);
         coffeecontrol2.owncollider.enabled = false;

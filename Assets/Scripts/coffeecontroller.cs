@@ -12,9 +12,9 @@ public class coffeecontroller : MonoBehaviour
     void Awake()
     {
         owncollider = GetComponent<Collider2D>();
-        Debug.Log("got collider", owncollider);
+        
         ownrenderer = GetComponent<SpriteRenderer>();
-        Debug.Log("got renderer", ownrenderer);
+       
 
     }
 
