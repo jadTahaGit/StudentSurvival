@@ -142,26 +142,30 @@ public class PlayerController : MonoBehaviour
     }
 
     public void TakeDamage(int damage){
-        
-        hitsound.Play();
-        HurtAni();
-        currentHealth -= damage;
-        if(currentHealth <= 0&&dead ==false)
+        if (dead == false)
         {
-            dead = true;
-            currentHealth = 0;
-            PlayerPrefs.SetInt("score", ScoreManager.instance.score);
-            DieAni();
-            enableKeyboardControl = false;
-            healthBar.SetHealth(currentHealth);
-            rb2d.isKinematic = true;
-            rb2d.velocity = Vector2.zero;
-            // wait a bit(2s) before Loading
-            StartCoroutine(loadGameOverMenu());
-            
-        } else{
+            hitsound.Play();
+            HurtAni();
+            currentHealth -= damage;
+            if (currentHealth <= 0)
+            {
+                dead = true;
+                currentHealth = 0;
+                PlayerPrefs.SetInt("score", ScoreManager.instance.score);
+                DieAni();
+                enableKeyboardControl = false;
+                healthBar.SetHealth(currentHealth);
+                rb2d.isKinematic = true;
+                rb2d.velocity = Vector2.zero;
+                // wait a bit(2s) before Loading
+                StartCoroutine(loadGameOverMenu());
 
-            healthBar.SetHealth(currentHealth); 
+            }
+            else
+            {
+
+                healthBar.SetHealth(currentHealth);
+            }
         }
              
     }
